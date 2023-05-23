@@ -1,6 +1,7 @@
 use deno_core::op;
 use deno_core::Extension;
 use deno_core::{error::AnyError, FastString};
+use edon::ts_transpiler::TsModuleLoader;
 use reqwest;
 use std::rc::Rc;
 
@@ -45,7 +46,7 @@ async fn run_js(file_path: &str) -> Result<(), AnyError> {
         ])
         .build();
     let mut js_runtime = deno_core::JsRuntime::new(deno_core::RuntimeOptions {
-        module_loader: Some(Rc::new(deno_core::FsModuleLoader)),
+        module_loader: Some(Rc::new(TsModuleLoader)),
         extensions: vec![runjs_extension],
         ..Default::default()
     });
