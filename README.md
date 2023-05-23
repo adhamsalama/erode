@@ -1,6 +1,6 @@
-# runjs
+# edoN
 
-An experimental JavaScript runtime built on V8 with Rust.
+An experimental NodeJS-like JavaScript runtime environment built on V8 and Rust.
 
 ## Resources
 

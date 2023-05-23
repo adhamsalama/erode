@@ -143,6 +143,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "edon"
+version = "0.1.0"
+dependencies = [
+ "deno_core",
+ "reqwest",
+ "tokio",
+]
+
+[[package]]
 name = "either"
 version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -878,15 +887,6 @@ dependencies = [
  "wasm-bindgen-futures",
  "web-sys",
  "winreg",
-]
-
-[[package]]
-name = "runjs"
-version = "0.1.0"
-dependencies = [
- "deno_core",
- "reqwest",
- "tokio",
 ]
 
 [[package]]
