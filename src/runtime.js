@@ -13,6 +13,9 @@
       core.print(`${argsToMessage(...args)}\n`, true);
     },
   };
+  globalThis.setTimeout = (callback, delay, ...arguments) => {
+    return core.ops.op_set_timeout(delay).then(() => callback(...arguments));
+  };
   globalThis.erode = {
     readFile: (path) => {
       return core.ops.op_read_file(path);
@@ -26,10 +29,6 @@
 
     async fetch(url) {
       return await core.ops.op_fetch(url);
-    },
-
-    setTimeout: (callback, delay) => {
-      return core.ops.op_set_timeout(delay).then(callback);
     },
   };
 })(globalThis);

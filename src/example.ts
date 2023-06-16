@@ -1,5 +1,4 @@
 console.log("Hello, world!");
-declare const erode: any;
 const path = "./log.txt";
 async function main() {
   try {
@@ -28,9 +27,7 @@ async function main() {
     "https://deno.land/std@0.177.0/examples/welcome.ts"
   );
   console.log("Content from fetch", content);
-  erode.setTimeout(() => {
-    console.log("setTimeout called");
-  }, 5000);
+  setTimeout(console.log, 5000, "Hello from setTimeout");
   console.log("should be printed before setTiemout");
 }
 main();
