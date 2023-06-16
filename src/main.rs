@@ -1,55 +1,21 @@
-use deno_core::op;
 use deno_core::Extension;
 use deno_core::{error::AnyError, FastString};
+use erode::node_api;
 use erode::ts_transpiler::TsModuleLoader;
-use reqwest;
+use erode::web_api;
 use std::rc::Rc;
-
-#[op]
-async fn op_read_file(path: String) -> Result<String, AnyError> {
-    let contents = tokio::fs::read_to_string(path).await?;
-    Ok(contents)
-}
-
-#[op]
-async fn op_write_file(path: String, contents: String) -> Result<(), AnyError> {
-    tokio::fs::write(path, contents).await?;
-    Ok(())
-}
-
-#[op]
-fn op_remove_file(path: String) -> Result<(), AnyError> {
-    std::fs::remove_file(path)?;
-    Ok(())
-}
-
-#[op]
-async fn op_fetch(url: String) -> Result<String, AnyError> {
-    let res = reqwest::get(url)
-        .await?
-        // .json::<HashMap<String, String>>()
-        .text()
-        .await?;
-    Ok(res)
-}
-
-#[op]
-async fn op_set_timeout(delay: u64) -> Result<(), AnyError> {
-    tokio::time::sleep(tokio::time::Duration::from_millis(delay)).await;
-    Ok(())
-}
 
 async fn run_js(file_path: &str) -> Result<(), AnyError> {
     // get current dir
     let current_dir = std::env::current_dir()?;
     let main_module = deno_core::resolve_path(file_path, &current_dir)?;
-    let runjs_extension = Extension::builder("runjs")
+    let runjs_extension = Extension::builder("erode")
         .ops(vec![
-            op_read_file::decl(),
-            op_write_file::decl(),
-            op_remove_file::decl(),
-            op_fetch::decl(),
-            op_set_timeout::decl(),
+            node_api::op_read_file::decl(),
+            node_api::op_write_file::decl(),
+            node_api::op_remove_file::decl(),
+            web_api::op_fetch::decl(),
+            web_api::op_set_timeout::decl(),
         ])
         .build();
     let mut js_runtime = deno_core::JsRuntime::new(deno_core::RuntimeOptions {
