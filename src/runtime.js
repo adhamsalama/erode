@@ -27,5 +27,9 @@
     async fetch(url) {
       return await core.ops.op_fetch(url);
     },
+
+    setTimeout: (callback, delay) => {
+      return core.ops.op_set_timeout(delay).then(callback);
+    },
   };
 })(globalThis);

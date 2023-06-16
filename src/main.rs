@@ -33,6 +33,12 @@ async fn op_fetch(url: String) -> Result<String, AnyError> {
     Ok(res)
 }
 
+#[op]
+async fn op_set_timeout(delay: u64) -> Result<(), AnyError> {
+    tokio::time::sleep(tokio::time::Duration::from_millis(delay)).await;
+    Ok(())
+}
+
 async fn run_js(file_path: &str) -> Result<(), AnyError> {
     // get current dir
     let current_dir = std::env::current_dir()?;
@@ -43,6 +49,7 @@ async fn run_js(file_path: &str) -> Result<(), AnyError> {
             op_write_file::decl(),
             op_remove_file::decl(),
             op_fetch::decl(),
+            op_set_timeout::decl(),
         ])
         .build();
     let mut js_runtime = deno_core::JsRuntime::new(deno_core::RuntimeOptions {

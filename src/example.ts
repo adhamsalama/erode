@@ -28,5 +28,8 @@ async function main() {
     "https://deno.land/std@0.177.0/examples/welcome.ts"
   );
   console.log("Content from fetch", content);
+  edon.setTimeout(() => {
+    console.log("setTimeout called");
+  }, 5000);
 }
 main();
