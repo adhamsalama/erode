@@ -13,7 +13,7 @@
       core.print(`${argsToMessage(...args)}\n`, true);
     },
   };
-  globalThis.edon = {
+  globalThis.erode = {
     readFile: (path) => {
       return core.ops.op_read_file(path);
     },

@@ -1,22 +1,22 @@
-console.log("hello runjs", "qq");
-declare const edon: any;
+console.log("Hello, world!");
+declare const erode: any;
 const path = "./log.txt";
 async function main() {
   try {
-    const contents = await edon.readFile(path);
+    const contents = await erode.readFile(path);
     console.log("Read from a file", contents);
   } catch (err) {
     console.error("Unable to read file", path, err);
   }
 
-  await edon.writeFile(path, "I can write to a file.");
-  const contents = await edon.readFile(path);
+  await erode.writeFile(path, "I can write to a file.");
+  const contents = await erode.readFile(path);
   console.log("Read from a file", path, "contents:", contents);
   console.log("Removing file", path);
-  edon.removeFile(path);
+  erode.removeFile(path);
   console.log("File removed");
 
-  const res = await edon.fetch("https://www.example.com/");
+  const res = await erode.fetch("https://www.example.com/");
   console.log("Fetch result", res);
 
   interface Foo {
@@ -24,12 +24,13 @@ async function main() {
     fizz: number;
   }
   let content: string;
-  content = await edon.fetch(
+  content = await erode.fetch(
     "https://deno.land/std@0.177.0/examples/welcome.ts"
   );
   console.log("Content from fetch", content);
-  edon.setTimeout(() => {
+  erode.setTimeout(() => {
     console.log("setTimeout called");
   }, 5000);
+  console.log("should be printed before setTiemout");
 }
 main();

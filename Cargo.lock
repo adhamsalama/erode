@@ -331,16 +331,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "edon"
-version = "0.1.0"
-dependencies = [
- "deno_ast",
- "deno_core",
- "reqwest",
- "tokio",
-]
-
-[[package]]
 name = "either"
 version = "1.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -365,6 +355,16 @@ dependencies = [
  "proc-macro2",
  "swc_macros_common",
  "syn 1.0.109",
+]
+
+[[package]]
+name = "erode"
+version = "0.1.0"
+dependencies = [
+ "deno_ast",
+ "deno_core",
+ "reqwest",
+ "tokio",
 ]
 
 [[package]]

@@ -1,7 +1,7 @@
 use deno_core::op;
 use deno_core::Extension;
 use deno_core::{error::AnyError, FastString};
-use edon::ts_transpiler::TsModuleLoader;
+use erode::ts_transpiler::TsModuleLoader;
 use reqwest;
 use std::rc::Rc;
 
