@@ -60,7 +60,7 @@ async fn run_js(file_path: &str) -> Result<(), AnyError> {
     let runtime_js: String = include_str!("./runtime.js").to_string();
     let runtime_js: FastString = format!("{}", runtime_js).into();
     js_runtime
-        .execute_script("[runjs:runtime.js]", runtime_js)
+        .execute_script("[erode:runtime.js]", runtime_js)
         .unwrap();
     let mod_id = js_runtime.load_main_module(&main_module, None).await?;
     let result = js_runtime.mod_evaluate(mod_id);
@@ -72,7 +72,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     if args.is_empty() {
-        eprintln!("Usage: runjs <file>");
+        eprintln!("Usage: erode <file>");
         std::process::exit(1);
     }
     let file_path = &args[1];
